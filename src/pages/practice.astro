@@ -7,24 +7,25 @@ import Solution from '../components/Solution.astro';
 <Layout title="Practice C++ - Learn C++ Programming">
   <main class="pt-24 px-6 pb-12">
     <div class="max-w-7xl mx-auto">
-      <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-8">
-        <h1 class="text-4xl font-bold text-white mb-8">Practice C++</h1>
+      <div class="practice-container backdrop-blur-xl bg-glass border border-glass-border rounded-xl p-8 hover:shadow-2xl transition-all duration-300">
+        <h1 class="text-4xl font-bold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent mb-8 hover:scale-105 transform transition-transform">Practice C++</h1>
         
         <div class="space-y-12">
           <!-- Basic Practice -->
-          <section>
-            <h2 class="text-2xl font-bold text-white mb-4">Basic Challenges</h2>
+          <section class="challenge-section">
+            <h2 class="section-title">Basic Challenges</h2>
             <div class="space-y-8">
-              <div>
-                <h3 class="text-xl font-bold text-white mb-4">Challenge 1: FizzBuzz</h3>
-                <p class="text-gray-300 mb-4">Write a program that prints numbers from 1 to 100. For multiples of 3, print "Fizz". For multiples of 5, print "Buzz". For numbers that are multiples of both 3 and 5, print "FizzBuzz".</p>
-                <CodeEditor 
-                  initialCode={`void fizzBuzz() {
+              <div class="challenge-card">
+                <h3 class="challenge-title">Challenge 1: FizzBuzz</h3>
+                <p class="challenge-description">Write a program that prints numbers from 1 to 100. For multiples of 3, print "Fizz". For multiples of 5, print "Buzz". For numbers that are multiples of both 3 and 5, print "FizzBuzz".</p>
+                <div class="editor-container">
+                  <CodeEditor 
+                    initialCode={`void fizzBuzz() {
     // Write your code here
 }`}
-                  challengeId="fizzbuzz"
-                />
-                <Solution solution={`void fizzBuzz() {
+                    challengeId="fizzbuzz"
+                  />
+                  <Solution solution={`void fizzBuzz() {
     for(int i = 1; i <= 100; i++) {
         if(i % 15 == 0)
             cout << "FizzBuzz\\n";
@@ -36,25 +37,27 @@ import Solution from '../components/Solution.astro';
             cout << i << "\\n";
     }
 }`} />
+                </div>
               </div>
             </div>
           </section>
 
           <!-- Advanced Practice -->
-          <section>
-            <h2 class="text-2xl font-bold text-white mb-4">Advanced Challenges</h2>
+          <section class="challenge-section">
+            <h2 class="section-title">Advanced Challenges</h2>
             <div class="space-y-8">
-              <div>
-                <h3 class="text-xl font-bold text-white mb-4">Challenge 2: Binary Search Tree</h3>
-                <p class="text-gray-300 mb-4">Implement a binary search tree with insert and search operations.</p>
-                <CodeEditor 
-                  initialCode={`template<typename T>
+              <div class="challenge-card">
+                <h3 class="challenge-title">Challenge 2: Binary Search Tree</h3>
+                <p class="challenge-description">Implement a binary search tree with insert and search operations.</p>
+                <div class="editor-container">
+                  <CodeEditor 
+                    initialCode={`template<typename T>
 class BST {
     // Add your implementation here
 };`}
-                  challengeId="bst-implementation"
-                />
-                <Solution solution={`template<typename T>
+                    challengeId="bst-implementation"
+                  />
+                  <Solution solution={`template<typename T>
 class BST {
     struct Node {
         T data;
@@ -82,24 +85,26 @@ public:
         root = insert(root, data);
     }
 };`} />
+                </div>
               </div>
             </div>
           </section>
 
           <!-- Algorithm Practice -->
-          <section>
-            <h2 class="text-2xl font-bold text-white mb-4">Algorithm Challenges</h2>
+          <section class="challenge-section">
+            <h2 class="section-title">Algorithm Challenges</h2>
             <div class="space-y-8">
-              <div>
-                <h3 class="text-xl font-bold text-white mb-4">Challenge 3: Merge Sort</h3>
-                <p class="text-gray-300 mb-4">Implement the merge sort algorithm.</p>
-                <CodeEditor 
-                  initialCode={`void mergeSort(vector<int>& arr) {
+              <div class="challenge-card">
+                <h3 class="challenge-title">Challenge 3: Merge Sort</h3>
+                <p class="challenge-description">Implement the merge sort algorithm.</p>
+                <div class="editor-container">
+                  <CodeEditor 
+                    initialCode={`void mergeSort(vector<int>& arr) {
     // Implement merge sort
 }`}
-                  challengeId="merge-sort"
-                />
-                <Solution solution={`void merge(vector<int>& arr, int left, int mid, int right) {
+                    challengeId="merge-sort"
+                  />
+                  <Solution solution={`void merge(vector<int>& arr, int left, int mid, int right) {
     vector<int> temp(right - left + 1);
     int i = left, j = mid + 1, k = 0;
     
@@ -128,6 +133,7 @@ void mergeSort(vector<int>& arr, int left, int right) {
         merge(arr, left, mid, right);
     }
 }`} />
+                </div>
               </div>
             </div>
           </section>
@@ -136,3 +142,75 @@ void mergeSort(vector<int>& arr, int left, int right) {
     </div>
   </main>
 </Layout>
+
+<style>
+  .practice-container {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .practice-container:hover {
+    border-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 255, 255, 0.2);
+  }
+
+  .challenge-section {
+    @apply transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6 
+           transform transition-all duration-300 hover:scale-105;
+  }
+
+  .challenge-card {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl p-6 
+           transition-all duration-300 hover:bg-white/10 
+           hover:border-teal-500/30 hover:shadow-lg hover:shadow-teal-500/10;
+  }
+
+  .challenge-title {
+    @apply text-xl font-bold text-white mb-4 
+           transition-colors duration-300 hover:text-teal-300;
+  }
+
+  .challenge-description {
+    @apply text-gray-300 mb-6 leading-relaxed;
+  }
+
+  .editor-container {
+    @apply space-y-4 transition-transform duration-300 hover:scale-[1.01];
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 255, 0.3);
+  }
+
+  /* Animation keyframes */
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+    }
+  }
+</style>
