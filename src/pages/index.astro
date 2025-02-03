@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+---
+
+<Layout title="C++ Tutorials - Learn C++ Programming">
+  <main class="pt-24 px-6 pb-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h1 class="text-6xl font-bold text-white mb-6">
+          Master C++ Programming
+        </h1>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+          Interactive tutorials, practical examples, and hands-on coding exercises to help you learn C++ programming from scratch.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-6">
+          <h2 class="text-2xl font-bold text-white mb-4">Basics</h2>
+          <p class="text-gray-300 mb-4">Start with C++ fundamentals, syntax, and core concepts.</p>
+          <a href="/basics" class="inline-block bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg">Get Started</a>
+        </div>
+
+        <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-6">
+          <h2 class="text-2xl font-bold text-white mb-4">Advanced Topics</h2>
+          <p class="text-gray-300 mb-4">Dive deep into OOP, templates, and advanced C++ features.</p>
+          <a href="/advanced" class="inline-block bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg">Explore</a>
+        </div>
+
+        <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-6">
+          <h2 class="text-2xl font-bold text-white mb-4">Practice</h2>
+          <p class="text-gray-300 mb-4">Test your skills with interactive coding exercises.</p>
+          <a href="/practice" class="inline-block bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg">Start Coding</a>
+        </div>
+      </div>
+
+      <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-8">
+        <h2 class="text-3xl font-bold text-white mb-6">Quick Example</h2>
+        <CodeBlock code={`#include <iostream>
+
+int main() {
+    std::cout << "Hello, C++!" << std::endl;
+    return 0;
+}`} lang="cpp" />
+        <div class="mt-4">
+          <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg">Try it yourself →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,31 @@
+---
+interface Props {
+  solution: string;
+}
+
+const { solution } = Astro.props;
+---
+
+<div class="solution-container mt-4">
+  <button class="show-solution bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+    Show Solution
+  </button>
+  
+  <div class="solution-code hidden mt-4 backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-4">
+    <h3 class="text-white font-bold mb-2">Example Solution:</h3>
+    <pre class="bg-[#1f2937] text-white font-mono p-4 rounded-lg overflow-auto"><code class="language-cpp">{solution}</code></pre>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.solution-container').forEach(container => {
+    const button = container.querySelector('.show-solution');
+    const solutionCode = container.querySelector('.solution-code');
+    
+    button.addEventListener('click', () => {
+      const isHidden = solutionCode.classList.contains('hidden');
+      solutionCode.classList.toggle('hidden');
+      button.textContent = isHidden ? 'Hide Solution' : 'Show Solution';
+    });
+  });
+</script>

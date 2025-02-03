@@ -1,0 +1,33 @@
+<section>
+          <div>
+            <h3 class="text-xl font-bold text-white mb-4">Algorithm Features</h3>
+            <CodeBlock code={``} />
+            </div>
+           
+        </section>
+
+
+
+<section>
+      <div>
+        <h1 class="text-4xl font-bold text-white mb-8">Example</h1>
+        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={``} />
+        <CodeBlock code={``} />
+        </div>
+        </div>
+       
+    </section>
+
+
+ <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={``} />
+        <CodeBlock code={``} />
+        </div>
+        </div>
+       
+    </section>

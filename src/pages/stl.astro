@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import CodeEditor from '../components/CodeEditor.astro';
+---
+
+<Layout title="C++ STL - Learn C++ Programming">
+  <main class="px-6 pb-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-8">
+        <h1 class="text-4xl font-bold text-white mb-8">Standard Template Library (STL)</h1>
+        
+        <div class="space-y-12">
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Containers</h2>
+            <p class="text-gray-300 mb-4">Common STL containers and their usage.</p>
+            <CodeBlock code={`// Vector - Dynamic Array
+vector<int> vec = {1, 2, 3};
+vec.push_back(4);
+
+// List - Doubly Linked List
+list<string> lst = {"apple", "banana"};
+lst.push_front("orange");
+
+// Map - Key-Value Pairs
+map<string, int> ages;
+ages["Alice"] = 25;
+ages["Bob"] = 30;`} />
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Algorithms</h2>
+            <p class="text-gray-300 mb-4">Essential STL algorithms.</p>
+            <CodeBlock code={`vector<int> nums = {3, 1, 4, 1, 5, 9};
+
+// Sorting
+sort(nums.begin(), nums.end());
+
+// Finding elements
+auto it = find(nums.begin(), nums.end(), 4);
+
+// Counting elements
+int count = count_if(nums.begin(), nums.end(),
+    [](int n) { return n > 3; });`} />
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Practice: STL Container Operations</h2>
+            <p class="text-gray-300 mb-4">Try implementing basic STL container operations.</p>
+            <CodeEditor 
+              initialCode={`#include <vector>
+#include <algorithm>
+using namespace std;
+
+// Implement a function that:
+// 1. Takes a vector of integers
+// 2. Sorts it in ascending order
+// 3. Removes duplicates
+// 4. Returns the modified vector
+
+vector<int> processVector(vector<int>& nums) {
+    // Your code here
+    return nums;
+}`}
+              challengeId="stl-practice"
+            />
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

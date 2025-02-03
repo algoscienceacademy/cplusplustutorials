@@ -1,0 +1,181 @@
+---
+interface Props {
+  initialCode: string;
+  language?: string;
+  challengeId?: string;
+}
+
+const { initialCode, language = 'cpp', challengeId } = Astro.props;
+---
+
+<div class="code-editor-container">
+  <div class="flex justify-between items-center mb-4">
+    <div class="flex space-x-4">
+      <button class="run-code bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+        Run Code
+      </button>
+      <button class="reset-code bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+        Reset
+      </button>
+      {challengeId && (
+        <button class="save-code bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+          Save Progress
+        </button>
+      )}
+    </div>
+  </div>
+  
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="editor-wrapper backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-4">
+      <textarea
+        class="w-full h-64 bg-[#1f2937] text-white font-mono p-4 rounded-lg"
+        spellcheck="false"
+        data-challenge-id={challengeId}
+      >{initialCode}</textarea>
+    </div>
+    
+    <div class="output-wrapper backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-4">
+      <div class="text-white font-bold mb-2">Output:</div>
+      <pre class="output-display h-56 bg-[#1f2937] text-white font-mono p-4 rounded-lg overflow-auto"></pre>
+      <div class="input-section mt-2 flex items-center">
+        <input type="text" class="input-field flex-grow bg-[#1f2937] text-white font-mono p-2 rounded-lg" placeholder="Enter input here..." />
+        <button class="send-input bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg ml-2">Send Input</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  class CodeEditor {
+    constructor(container) {
+      this.container = container;
+      this.textarea = container.querySelector('textarea');
+      this.inputField = container.querySelector('.input-field');
+      this.output = container.querySelector('.output-display');
+      this.runButton = container.querySelector('.run-code');
+      this.resetButton = container.querySelector('.reset-code');
+      this.saveButton = container.querySelector('.save-code');
+      this.sendInputButton = container.querySelector('.send-input');
+      this.initialCode = this.textarea.value;
+      this.challengeId = this.textarea.dataset.challengeId;
+      this.stdin = '';
+      this.isWaitingForInput = false;
+      
+      this.initializeEventListeners();
+      this.loadSavedCode();
+    }
+    
+    initializeEventListeners() {
+      this.runButton.addEventListener('click', () => this.runCode());
+      this.resetButton.addEventListener('click', () => this.resetCode());
+      this.sendInputButton.addEventListener('click', () => this.sendInput());
+      if (this.saveButton) {
+        this.saveButton.addEventListener('click', () => this.saveCode());
+      }
+
+      // Add auto-save on typing
+      let timeout;
+      this.textarea.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => this.saveCode(), 1000);
+      });
+    }
+
+    loadSavedCode() {
+      if (this.challengeId) {
+        const savedCode = localStorage.getItem(`cpp_challenge_${this.challengeId}`);
+        if (savedCode) {
+          this.textarea.value = savedCode;
+        }
+      }
+    }
+    
+    saveCode() {
+      if (this.challengeId) {
+        localStorage.setItem(`cpp_challenge_${this.challengeId}`, this.textarea.value);
+        this.showSaveNotification();
+      }
+    }
+
+    showSaveNotification() {
+      const notification = document.createElement('div');
+      notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg';
+      notification.textContent = 'Progress saved!';
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 2000);
+    }
+    
+    async runCode() {
+      try {
+        this.output.textContent = "Compiling...\n";
+        const code = this.textarea.value;
+        const input = this.inputField.value;
+
+        const response = await fetch('https://emkc.org/api/v2/piston/execute', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            language: 'cpp',
+            version: '*',
+            files: [
+              {
+                name: 'main.cpp',
+                content: code,
+              },
+            ],
+            stdin: input,
+            args: [],
+            compile_timeout: 10000,
+            run_timeout: 3000,
+            compile_memory_limit: -1,
+            run_memory_limit: -1,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        if (result.run.stderr) {
+          this.output.textContent = `Error: ${result.run.stderr}`;
+        } else {
+          this.output.textContent = `Output:\n${result.run.stdout}`;
+        }
+      } catch (error) {
+        this.output.textContent = `Error: ${error.message}`;
+        console.error('Error:', error);
+      }
+    }
+    
+    sendInput() {
+      const input = this.inputField.value;
+      if (input.trim() === '') {
+        this.output.textContent = 'Error: Input cannot be empty.';
+        return;
+      }
+      this.stdin = input;
+      this.runCode();
+    }
+    
+    resetCode() {
+      this.textarea.value = this.initialCode;
+      this.output.textContent = '';
+      this.inputField.value = '';
+      this.stdin = '';
+      if (this.challengeId) {
+        localStorage.removeItem(`cpp_challenge_${this.challengeId}`);
+      }
+    }
+  }
+  
+  // Initialize all code editors on the page
+  document.querySelectorAll('.code-editor-container').forEach(container => {
+    new CodeEditor(container);
+  });
+</script>

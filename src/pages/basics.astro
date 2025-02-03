@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import CodeEditor from '../components/CodeEditor.astro';
+---
+
+<Layout title="C++ Basics - Learn C++ Programming">
+  <main class="pt-24 px-6 pb-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-8">
+        <h1 class="text-4xl font-bold text-white mb-8">C++ Basics</h1>
+        
+        <div class="space-y-12">
+          <!-- Getting Started -->
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Getting Started with C++</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4">First Program</h3>
+                <CodeBlock code={`#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}`} />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4">Basic Input/Output</h3>
+                <CodeBlock code={`#include <iostream>
+using namespace std;
+
+int main() {
+    int number;
+    cout << "Enter a number: ";
+    cin >> number;
+    cout << "You entered: " << number << endl;
+    return 0;
+}`} />
+              </div>
+            </div>
+          </section>
+
+          <!-- Variables and Data Types -->
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Variables and Data Types</h2>
+            <div class="space-y-8">
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4">Primitive Data Types</h3>
+                <CodeBlock code={`// Integer types
+int a = 42;              // -2147483648 to 2147483647
+short b = 100;           // -32768 to 32767
+long c = 123456789L;     // At least 32 bits
+long long d = 123456789LL; // At least 64 bits
+
+// Floating-point types
+float e = 3.14f;         // Single precision
+double f = 3.14159;      // Double precision
+long double g = 3.14159L; // Extended precision
+
+// Character types
+char h = 'A';            // Single character
+wchar_t i = L'Ω';        // Wide character
+
+// Boolean type
+bool j = true;           // true or false
+
+// Size and alignment
+cout << "Size of int: " << sizeof(int) << " bytes\\n";
+cout << "Size of double: " << sizeof(double) << " bytes\\n";`} />
+              </div>
+
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4">Type Modifiers</h3>
+                <CodeBlock code={`// Signed vs Unsigned
+unsigned int positive = 4294967295;  // 0 to 4294967295
+signed int withSign = -42;           // Can be negative
+
+// Size modifiers
+short int small = 32767;
+long int big = 2147483647;
+long long int bigger = 9223372036854775807LL;
+
+// Const values
+const double PI = 3.14159;
+const char GRADE = 'A';
+
+// Volatile for hardware access
+volatile int sensorData;`} />
+              </div>
+
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4">Type Conversions</h3>
+                <CodeBlock code={`// Implicit conversion
+int x = 10;
+double y = x;    // int to double
+
+// Explicit conversion (C-style cast)
+double pi = 3.14159;
+int intPi = (int)pi;  // double to int
+
+// Static cast
+float f = 3.14f;
+int i = static_cast<int>(f);
+
+// Dynamic cast (for polymorphic types)
+class Base { virtual void dummy() {} };
+class Derived : public Base { };
+Base* base = new Derived;
+Derived* derived = dynamic_cast<Derived*>(base);
+
+// Const cast
+const int constant = 21;
+int* modifier = const_cast<int*>(&constant);
+
+// Reinterpret cast
+int* p = new int(65);
+char* ch = reinterpret_cast<char*>(p);`} />
+              </div>
+            </div>
+          </section>
+
+          <!-- Operators -->
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Operators</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4">Arithmetic Operators</h3>
+                <CodeBlock code={`int a = 10, b = 3;
+
+// Basic arithmetic
+int sum = a + b;        // Addition
+int diff = a - b;       // Subtraction
+int prod = a * b;       // Multiplication
+int quot = a / b;       // Division
+int rem = a % b;        // Modulus
+
+// Increment/Decrement
+int c = ++a;    // Pre-increment
+int d = b++;    // Post-increment
+int e = --a;    // Pre-decrement
+int f = b--;    // Post-decrement
+
+// Compound assignment
+int x = 5;
+x += 3;         // x = x + 3
+x -= 2;         // x = x - 2
+x *= 4;         // x = x * 4
+x /= 2;         // x = x / 2
+x %= 3;         // x = x % 3`} />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4">Logical and Comparison Operators</h3>
+                <CodeBlock code={`bool x = true, y = false;
+
+// Logical operators
+bool andResult = x && y;    // Logical AND
+bool orResult = x || y;     // Logical OR
+bool notResult = !x;        // Logical NOT
+
+// Comparison operators
+int a = 5, b = 10;
+bool isEqual = a == b;      // Equal to
+bool notEqual = a != b;     // Not equal to
+bool lessThan = a < b;      // Less than
+bool greaterThan = a > b;   // Greater than
+bool lessEqual = a <= b;    // Less than or equal
+bool greaterEqual = a >= b; // Greater than or equal
+
+// Bitwise operators
+int c = 5, d = 3;
+int bitwiseAnd = c & d;     // Bitwise AND
+int bitwiseOr = c | d;      // Bitwise OR
+int bitwiseXor = c ^ d;     // Bitwise XOR
+int leftShift = c << 1;     // Left shift
+int rightShift = c >> 1;    // Right shift
+int bitwiseNot = ~c;        // Bitwise NOT`} />
+              </div>
+            </div>
+          </section>
+
+          <!-- Practice Section -->
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Practice: Basic Operations</h2>
+            <p class="text-gray-300 mb-4">Try implementing a calculator that performs basic arithmetic operations.</p>
+            <CodeEditor 
+              initialCode={`class Calculator {
+public:
+    // Implement basic arithmetic operations
+    double add(double a, double b) {
+        // Your code here
+    }
+    
+    double subtract(double a, double b) {
+        // Your code here
+    }
+    
+    double multiply(double a, double b) {
+        // Your code here
+    }
+    
+    double divide(double a, double b) {
+        // Your code here
+    }
+};`}
+              challengeId="basic-calculator"
+            />
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

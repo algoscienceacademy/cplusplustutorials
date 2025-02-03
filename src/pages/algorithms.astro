@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import CodeEditor from '../components/CodeEditor.astro';
+---
+
+<Layout title="C++ Algorithms - Learn C++ Programming">
+  <main class="px-6 pb-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-8">
+        <h1 class="text-4xl font-bold text-white mb-8">C++ Algorithms</h1>
+        
+        <div class="space-y-12">
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Sorting Algorithms</h2>
+            <p class="text-gray-300 mb-4">Common sorting algorithms implementation in C++.</p>
+            <CodeBlock code={`// Bubble Sort
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    for(int i = 0; i < n-1; i++)
+        for(int j = 0; j < n-i-1; j++)
+            if(arr[j] > arr[j+1])
+                swap(arr[j], arr[j+1]);
+}
+
+// Quick Sort
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    
+    for(int j = low; j < high; j++) {
+        if(arr[j] <= pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if(low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}`} />
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Search Algorithms</h2>
+            <p class="text-gray-300 mb-4">Implementation of various search algorithms.</p>
+            <CodeBlock code={`// Linear Search
+int linearSearch(vector<int>& arr, int target) {
+    for(int i = 0; i < arr.size(); i++)
+        if(arr[i] == target)
+            return i;
+    return -1;
+}
+
+// Binary Search (Iterative)
+int binarySearch(vector<int>& arr, int target) {
+    int left = 0, right = arr.size() - 1;
+    
+    while(left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if(arr[mid] == target)
+            return mid;
+        if(arr[mid] < target)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
+}`} />
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Practice: Implement Merge Sort</h2>
+            <p class="text-gray-300 mb-4">Try implementing the merge sort algorithm.</p>
+            <CodeEditor 
+              initialCode={`void merge(vector<int>& arr, int left, int mid, int right) {
+    // Implement merge function
+}
+
+void mergeSort(vector<int>& arr, int left, int right) {
+    // Implement merge sort
+}`}
+              challengeId="merge-sort"
+            />
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

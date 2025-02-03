@@ -1,0 +1,466 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+---
+
+<Layout title="Advanced C++ - Learn C++ Programming">
+  <main class="pt-24 px-6 pb-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-8">
+        <h1 class="text-4xl font-bold text-white mb-8">Algorithm</h1>
+        
+        <div class="space-y-12">
+         
+
+          <!-- Advanced Algorithms -->
+          <section>
+            <!-- <h2 class="text-4xl font-bold text-white mb-4">Algorithm</h2> -->
+            <!-- <div class="grid md:grid-cols-2 gap-8"> -->
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4"> Algorithm - Comprehensive C++ Programming Guide </h3>
+                <CodeBlock code={`/**
+ * ==================================================================================
+ * █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+ * █  Algorithm - Comprehensive C++ Programming Guide                     █
+ * █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+ * 
+ * @description A comprehensive guide to C++ Algorithm implementation and best practices.
+ *              Part of the C++ Programming Header Series.
+ * 
+ * @author      Shahrear Hossain Shawon
+ * @github      algoscienceacademy
+ * @institution International Islamic University Chittagong (IIUC)
+ * 
+ * @version     1.0.0
+ * @date        Created: January 25, 2025
+ *              Updated: January 27, 2025
+ * 
+ * @credits     C++ Standard Library
+ *              C++ Reference
+ *              ChatGPT
+ * 
+ * @license     MIT License
+ * 
+ * @copyright   Copyright (c) 2025
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * ==================================================================================
+ */`} />
+              </div>  
+          </section>
+          <section>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4">Introduction of Algorithm</h3>
+                <CodeBlock code={`The <algorithm> header in C++ is part of the Standard Template Library (STL) 
+and provides a rich collection of functions to perform common operations on 
+containers like std::vector, std::list, std::deque, and others. It focuses 
+on non-modifying and modifying sequence operations, sorting, searching, and more.`} />
+              </div>
+          </section>
+
+          <section>
+            <div>
+              <h3 class="text-xl font-bold text-white mb-4">Algorithm Features</h3>
+              <CodeBlock code={`  ------------------------------------------------------------------------------------------------------------------------------------------
+  | . Modular and Reusable Code             | Contains generic algorithms that can operate on a variety of container types.                |
+  |                                         | Uses iterators to provide flexibility in working with different container types.             |
+  ..........................................|..............................................................................................|
+  | . Non-Modifying Sequence Operations     | Functions that do not alter the input data, such as std::find, std::count, std::all_of, etc. |
+  ..........................................|..............................................................................................|
+  | . Modifying Sequence Operations         | Functions that modify the container or range, like std::copy, std::remove, std::replace.     |
+  ..........................................|..............................................................................................|
+  | . Sorting and Partitioning              | Includes efficient sorting algorithms like std::sort, std::stable_sort, and partitioning     |
+  |                                         |                                                              algorithms like std::partition. |
+  ..........................................|..............................................................................................|
+  | . Searching and Merging                 | Provides functions like std::binary_search, std::merge, and std::lower_bound.                |
+  ..........................................|..............................................................................................|
+  | . Heap Operations                       | Functions like std::make_heap, std::push_heap, std::pop_heap for working with heaps.         |
+  ..........................................|..............................................................................................|
+  | . Set Operations                        | Functions like std::set_union, std::set_difference to operate on sorted ranges as            |
+  |                                         |                                                                 mathematical sets.           |
+  ..........................................|..............................................................................................|
+  | . Randomized Algorithms                 | ncludes functions like std::shuffle and std::sample for randomizing ranges.                  |
+  ..........................................|..............................................................................................|
+  | . Utility Functions                     | Helper functions like std::min, std::max, std::clamp, and std::lexicographical_compare.      |
+  ------------------------------------------------------------------------------------------------------------------------------------------`} />
+            </div>
+           
+        </section>
+
+        <section>
+          <div>
+            <h3 class="text-xl font-bold text-white mb-4">General Categories of Algorithms</h3>
+            <CodeBlock code={`---Non-Modifying Sequence Operations: ---|   Operations that do not change the original range of elements.
+                                         | Examples: std::find, std::count, std::mismatch.
+..........................................................................................................
+---Modifying Sequence Operations: -------|   Operations that modify the original range of elements.
+                                         | Examples: std::copy, std::remove, std::replace.
+..........................................................................................................
+---Sorting and Partitioning: ------------|   Operations that sort or partition the elements in a range.
+                                         | Examples: std::sort, std::stable_sort, std::partition.         
+..........................................................................................................
+---Binary Search: -----------------------|   Operations that search for an element in a sorted range.
+                                         | Examples: std::binary_search, std::lower_bound, std::upper_bound.
+..........................................................................................................
+---Heap Operations: ---------------------|   Operations that work with heap data structures.
+                                         | Examples: std::make_heap, std::push_heap, std::pop_heap.       
+..........................................................................................................
+---Set Operations: ----------------------|   Operations that work with sorted ranges as mathematical sets.
+                                         | Examples: std::set_union, std::set_difference.                 
+..........................................................................................................
+---Randomized Algorithms: ---------------|   Operations that involve randomness.
+                                         | Examples: std::shuffle, std::sample.                        
+..........................................................................................................
+---Numeric Operations: ------------------|   Operations that work with numeric values.
+                                         | Examples: std::accumulate, std::inner_product.                 
+..........................................................................................................`} />
+            </div>
+           
+        </section>
+      </section>
+      <section>
+        <div>
+          <h3 class="text-xl font-bold text-white mb-4">Algorithm Functions</h3>
+          <CodeBlock code={`---Non-Modifying Sequence Operations: ---|   all_of, any_of, none_of, for_each, count, count_if, mismatch, equal, find, find_if, find_if_not, find_end, find_first_of, adjacent_find, search, search_n.
+..........................................................................................................
+---Modifying Sequence Operations: -------|   copy, copy_n, copy_if, copy_backward, move, move_backward, fill, fill_n, transform, generate, generate_n, remove, remove_if, remove_copy, remove_copy_if, replace, replace_if, replace_copy, replace_copy_if, swap, swap_ranges, iter_swap, reverse, reverse_copy, rotate, rotate_copy, random_shuffle, shuffle.
+..........................................................................................................
+---Sorting and Partitioning: ------------|   is_sorted, is_sorted_until, sort, partial_sort, partial_sort_copy, stable_sort, nth_element, partition, partition_point, is_partitioned, inplace_merge.
+..........................................................................................................
+---Binary Search: -----------------------|   lower_bound, upper_bound, binary_search, equal_range.
+..........................................................................................................
+---Heap Operations: ---------------------|   is_heap, is_heap_until, make_heap, push_heap, pop_heap, sort_heap.
+..........................................................................................................
+---Set Operations: ----------------------|   merge, includes, set_union, set_intersection, set_difference, set_symmetric_difference.
+..........................................................................................................
+---Randomized Algorithms: ---------------|   random_shuffle, shuffle, sample.
+..........................................................................................................`} />
+          </div>
+         
+      </section>
+    </section>
+    <section>
+      <div>
+        <h1 class="text-4xl font-bold text-white mb-8">Example 1-23</h1>
+        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {10, 20, 5, 15, 30};
+
+    // Find the maximum element
+    auto max_it = std::max_element(nums.begin(), nums.end());
+    std::cout << "Maximum element: " << *max_it << "\n";
+
+    // Find the minimum element
+    auto min_it = std::min_element(nums.begin(), nums.end());
+    std::cout << "Minimum element: " << *min_it << "\n";
+
+    return 0;
+}`} />
+<CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Maximum element: 30
+        Minimum element: 5`} />
+        </div>
+        </div>
+       
+      </section>
+  
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4"> std::sort with Custom Comparator</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={`#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums  {10, 20, 5, 15, 30};
+  
+
+    // Sort in descending order
+    std::sort(nums.begin(), nums.end(), [](int a, int b) {
+        return a > b; // Custom comparator
+    });
+
+    // Print sorted elements
+    std::cout << "Sorted in descending order: ";
+    for (int n : nums) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+
+Output: Sorted in descending order: 30 20 15 10 5`} />
+        </div>
+        </div>
+       
+    </section>
+
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::unique to Remove Consecutive Duplicates</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 1, 2, 2, 3, 4, 4, 5};
+
+    // Remove consecutive duplicates
+    auto it = std::unique(nums.begin(), nums.end());
+
+    // Resize vector to the new size
+    nums.erase(it, nums.end());
+
+    // Print the unique elements
+    std::cout << "After removing duplicates: ";
+    for (int n : nums) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: After removing duplicates: 1 2 3 4 5`} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::partition</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 2, 3, 4, 5, 6};
+
+    // Partition even and odd numbers
+    auto partition_point = std::partition(nums.begin(), nums.end(), [](int n) {
+        return n % 2 == 0; // Even numbers first
+    });
+    
+    // Sort the even numbers
+    std::sort(nums.begin(), partition_point);
+    
+    // Sort the odd numbers
+    std::sort(partition_point, nums.end());
+
+    // Print partitioned elements
+    std::cout << "Partitioned (evens first): ";
+    for (int n : nums) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}
+`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Partitioned (evens first): 2 4 6 1 3 5`} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::transform</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 2, 3, 4, 5};
+    std::vector<int> squared(nums.size());
+
+    // Square each element
+    std::transform(nums.begin(), nums.end(), squared.begin(), [](int n) {
+        return n * n;
+    });
+
+    // Print squared elements
+    std::cout << "Squared elements: ";
+    for (int n : squared) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Squared elements: 1 4 9 16 25`} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::merg</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> vec1 = {1, 3, 5, 7};
+    std::vector<int> vec2 = {2, 4, 6, 8};
+    std::vector<int> merged(vec1.size() + vec2.size());
+
+    // Merge two sorted ranges
+    std::merge(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(), merged.begin());
+
+    // Print merged result
+    std::cout << "Merged: ";
+    for (int n : merged) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Merged: 1 2 3 4 5 6 7 8
+`} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::binary_search</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 3, 5, 7, 9};
+
+    // Check if element exists
+    bool found = std::binary_search(nums.begin(), nums.end(), 5);
+    std::cout << "Element 5 found: " << (found ? "Yes" : "No") << "\n";
+
+    found = std::binary_search(nums.begin(), nums.end(), 4);
+    std::cout << "Element 4 found: " << (found ? "Yes" : "No") << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Element 5 found: Yes   
+        Element 4 found: No
+`} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::remove_if</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 2, 3, 4, 5, 6};
+
+    // Remove all even numbers
+    auto it = std::remove_if(nums.begin(), nums.end(), [](int n) {
+        return n % 2 == 0; // Remove if even
+    });
+
+    // Erase the removed elements
+    nums.erase(it, nums.end());
+
+    // Print the result
+    std::cout << "After removing evens: ";
+    for (int n : nums) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: After removing evens: 1 3 5
+`} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::rotate</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={``} />
+        <CodeBlock code={``} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={``} />
+        <CodeBlock code={``} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={``} />
+        <CodeBlock code={``} />
+        </div>
+        </div>
+       
+    </section>
+    <section>
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <div class="space-y-8"> 
+        <CodeBlock code={``} />
+        <CodeBlock code={``} />
+        </div>
+        </div>
+       
+    </section>
+
+
+
+      
+      </div>
+      </div>
+    </div>
+  </main>
+</Layout>

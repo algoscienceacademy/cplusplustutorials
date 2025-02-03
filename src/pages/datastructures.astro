@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import CodeEditor from '../components/CodeEditor.astro';
+---
+
+<Layout title="C++ Data Structures - Learn C++ Programming">
+  <main class="px-6 pb-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="backdrop-blur-glass bg-glass border border-glass-border rounded-xl p-8">
+        <h1 class="text-4xl font-bold text-white mb-8">Data Structures in C++</h1>
+        
+        <div class="space-y-12">
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Linked List</h2>
+            <p class="text-gray-300 mb-4">Implementation of a singly linked list.</p>
+            <CodeBlock code={`template<typename T>
+class LinkedList {
+    struct Node {
+        T data;
+        Node* next;
+        Node(T d) : data(d), next(nullptr) {}
+    };
+    
+    Node* head;
+    
+public:
+    LinkedList() : head(nullptr) {}
+    
+    void push_front(T data) {
+        Node* newNode = new Node(data);
+        newNode->next = head;
+        head = newNode;
+    }
+    
+    void display() {
+        Node* current = head;
+        while(current) {
+            cout << current->data << " -> ";
+            current = current->next;
+        }
+        cout << "nullptr\\n";
+    }
+};`} />
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Binary Search Tree</h2>
+            <p class="text-gray-300 mb-4">Implementation of a binary search tree.</p>
+            <CodeBlock code={`template<typename T>
+class BST {
+    struct Node {
+        T data;
+        Node *left, *right;
+        Node(T d) : data(d), left(nullptr), right(nullptr) {}
+    };
+    
+    Node* root;
+    
+    Node* insert(Node* node, T data) {
+        if(!node) return new Node(data);
+        
+        if(data < node->data)
+            node->left = insert(node->left, data);
+        else if(data > node->data)
+            node->right = insert(node->right, data);
+            
+        return node;
+    }
+    
+public:
+    BST() : root(nullptr) {}
+    
+    void insert(T data) {
+        root = insert(root, data);
+    }
+};`} />
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-bold text-white mb-4">Practice: Stack Implementation</h2>
+            <p class="text-gray-300 mb-4">Implement a stack data structure using arrays.</p>
+            <CodeEditor 
+              initialCode={`template<typename T>
+class Stack {
+    static const int MAX_SIZE = 100;
+    T arr[MAX_SIZE];
+    int top;
+    
+public:
+    Stack() {
+        // Initialize your stack
+    }
+    
+    void push(T data) {
+        // Implement push operation
+    }
+    
+    T pop() {
+        // Implement pop operation
+    }
+    
+    bool isEmpty() {
+        // Check if stack is empty
+    }
+};`}
+              challengeId="stack-implementation"
+            />
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
