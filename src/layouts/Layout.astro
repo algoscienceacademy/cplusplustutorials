@@ -57,6 +57,15 @@ const siteLocale = "en_US";
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="gT6Ae8IbEk183QMmPX0_E_lQanvK3SGgbJ5aLZCZ54U" />
     
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-5Z9GEEKL3B"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args){dataLayer.push(args);}
+      gtag('js', new Date());
+      gtag('config', 'G-5Z9GEEKL3B');
+    </script>
+    
     <!-- Primary Meta Tags -->
     <title>{title} | Algo Science Academy</title>
     <meta name="title" content={title} />
