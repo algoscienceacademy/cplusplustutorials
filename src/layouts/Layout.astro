@@ -4,6 +4,13 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const categories = [
+  { name: 'Algorithm', path: '/algorithm' },
+  { name: 'STL', path: '/stl' },
+  { name: 'DSA', path: '/datastructures' },
+  
+];
 ---
 
 <!doctype html>
@@ -24,26 +31,56 @@ const { title } = Astro.props;
     <div class="relative z-10">
       <!-- Navigation -->
       <nav class="fixed top-0 w-full backdrop-blur-md bg-glass border-b border-glass-border px-6 py-4 z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-          <a href="/" class="text-white text-2xl font-bold">C++ Tutorials</a>
-          <div class="space-x-6">
-            <a href="/" class="text-white hover:text-teal-300">Home</a>
-            <a href="/practice" class="text-white hover:text-teal-300">Practice</a>
-            <a href="/basics" class="text-white hover:text-teal-300">Basic</a>
-            <a href="/algorithm" class="text-white hover:text-teal-300">Algorithm</a>
+        <div class="max-w-7xl mx-auto">
+          <!-- Main Navigation -->
+          <div class="flex justify-between items-center">
+            <a href="/" class="text-white text-2xl font-bold">C++ Tutorials</a>
+            <div class="hidden md:flex space-x-6">
+              <a href="/" class="text-white hover:text-teal-300">Home</a>
+              <a href="/practice" class="text-white hover:text-teal-300">Practice</a>
+              <a href="/basics" class="text-white hover:text-teal-300">Basic</a>
+            </div>
+            <button class="md:hidden text-white" id="mobile-menu-btn">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Category Tabs -->
+          <div class="mt-4 overflow-x-auto scrollbar-hide">
+            <div class="flex space-x-4 pb-2">
+              {categories.map(category => (
+                <a 
+                  href={category.path}
+                  class="text-white hover:text-teal-300 whitespace-nowrap backdrop-blur-xl bg-glass px-4 py-2 rounded-lg border border-glass-border transition-colors"
+                >
+                  {category.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Mobile Menu -->
+          <div class="hidden md:hidden mt-4" id="mobile-menu">
+            <div class="backdrop-blur-xl bg-glass border border-glass-border rounded-lg py-2">
+              <a href="/" class="block px-4 py-2 text-white hover:bg-white/10">Home</a>
+              <a href="/practice" class="block px-4 py-2 text-white hover:bg-white/10">Practice</a>
+              <a href="/basics" class="block px-4 py-2 text-white hover:bg-white/10">Basic</a>
+            </div>
           </div>
         </div>
       </nav>
 
       <!-- Main Content -->
-      <main class="min-h-screen pt-20 pb-24">
+      <main class="min-h-screen pt-32 pb-24">
         <slot />
       </main>
 
       <!-- Footer -->
       <footer class="fixed bottom-0 w-full backdrop-blur-md bg-glass border-t border-glass-border px-6 py-4 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-          <p class="text-white">&copy; 2024-2025 C++ Tutorials</p>
+          <p class="text-white">&copy; 2024 C++ Tutorials</p>
           <div class="space-x-6">
             <a href="/about" class="text-white hover:text-teal-300">About</a>
             <a href="/contact" class="text-white hover:text-teal-300">Contact</a>
@@ -52,15 +89,17 @@ const { title } = Astro.props;
       </footer>
     </div>
 
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        if (typeof Prism !== 'undefined') {
-          Prism.highlightAll();
-        }
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
       });
     </script>
+    
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
   </body>
 </html>
 
@@ -114,9 +153,13 @@ const { title } = Astro.props;
     backdrop-filter: blur(10px);
   }
 
-  code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-      Bitstream Vera Sans Mono, Courier New, monospace;
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 
   @keyframes scale {
