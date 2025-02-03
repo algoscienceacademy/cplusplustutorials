@@ -595,46 +595,146 @@ Output: Sum of elements: 15`} />
     </section>
     <section>
       <div>
-        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <h3 class="text-xl font-bold text-white mb-4">std::equal_range</h3>
         <div class="space-y-8"> 
-        <CodeBlock code={``} />
-        <CodeBlock code={``} />
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 2, 3, 3, 3, 4, 5};
+
+    // Find the range of value 3
+    auto range = std::equal_range(nums.begin(), nums.end(), 3);
+
+    std::cout << "Range of value 3: ";
+    for (auto it = range.first; it != range.second; ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Range of value 3: 3 3 3`} />
         </div>
         </div>
        
     </section>
     <section>
       <div>
-        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <h3 class="text-xl font-bold text-white mb-4">std::inplace_merge</h3>
         <div class="space-y-8"> 
-        <CodeBlock code={``} />
-        <CodeBlock code={``} />
+        <CodeBlock code={`
+#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 3, 5, 2, 4, 6};
+
+    // Merge the two sorted halves in-place
+    std::inplace_merge(nums.begin(), nums.begin() + 3, nums.end());
+
+    // Print the result
+    std::cout << "After in-place merge: ";
+    for (int n : nums) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: After in-place merge: 1 2 3 4 5 6`} />
         </div>
-        </div><section>
+        </div>
+      </section>
+
+        <section>
           <div>
-            <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+            <h3 class="text-xl font-bold text-white mb-4">std::minmax_element</h3>
             <div class="space-y-8"> 
-            <CodeBlock code={``} />
-            <CodeBlock code={``} />
+            <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {3, 1, 4, 1, 5, 9};
+
+    // Find the min and max elements
+    auto result = std::minmax_element(nums.begin(), nums.end());
+
+    std::cout << "Min element: " << *result.first << "\n";
+    std::cout << "Max element: " << *result.second << "\n";
+
+    return 0;
+}
+`} />
+            <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Min element: 1
+        Max element: 9`} />
             </div>
             </div>
            
         </section>
         <section>
           <div>
-            <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+            <h3 class="text-xl font-bold text-white mb-4">std::next_permutation</h3>
             <div class="space-y-8"> 
-            <CodeBlock code={``} />
-            <CodeBlock code={``} />
+            <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 2, 3};
+
+    // Generate and print all permutations
+    do {
+        for (int n : nums) {
+            std::cout << n << " ";
+        }
+        std::cout << "\n";
+    } while (std::next_permutation(nums.begin(), nums.end()));
+
+    return 0;
+}`} />
+            <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: 1 2 3
+        1 3 2
+        2 1 3
+        2 3 1
+        3 1 2
+        3 2 1`} />
             </div>
             </div>
            
         </section><section>
           <div>
-            <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+            <h3 class="text-xl font-bold text-white mb-4">std::adjacent_difference</h3>
             <div class="space-y-8"> 
-            <CodeBlock code={``} />
-            <CodeBlock code={``} />
+            <CodeBlock code={`#include <numeric>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {10, 20, 30, 40, 50};
+    std::vector<int> differences(nums.size());
+
+    // Calculate adjacent differences
+    std::adjacent_difference(nums.begin(), nums.end(), differences.begin());
+
+    // Print the differences
+    std::cout << "Differences: ";
+    for (int d : differences) {
+        std::cout << d << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+            <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Differences: 10 10 10 10 10`} />
             </div>
             </div>
            
@@ -643,30 +743,96 @@ Output: Sum of elements: 15`} />
         
         <section>
           <div>
-            <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+            <h3 class="text-xl font-bold text-white mb-4">std::includes</h3>
             <div class="space-y-8"> 
-            <CodeBlock code={``} />
-            <CodeBlock code={``} />
+            <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> set1 = {1, 2, 3, 4, 5};
+    std::vector<int> set2 = {2, 3, 5};
+
+    // Check if set1 includes set2
+    bool result = std::includes(set1.begin(), set1.end(), set2.begin(), set2.end());
+
+    std::cout << "Does set1 include set2? " << (result ? "Yes" : "No") << "\n";
+
+    return 0;
+}`} />
+            <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Does set1 include set2? Yes`} />
             </div>
             </div>
            
         </section>
         <section>
           <div>
-            <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+            <h3 class="text-xl font-bold text-white mb-4">std::set_intersection</h3>
             <div class="space-y-8"> 
-            <CodeBlock code={``} />
-            <CodeBlock code={``} />
+            <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> set1 = {1, 2, 3, 4, 5};
+    std::vector<int> set2 = {3, 4, 5, 6, 7};
+    std::vector<int> result(std::min(set1.size(), set2.size()));
+
+    // Find the intersection
+    auto it = std::set_intersection(set1.begin(), set1.end(), set2.begin(), set2.end(), result.begin());
+
+    // Resize the result vector to the actual size
+    result.resize(it - result.begin());
+
+    // Print the intersection
+    std::cout << "Intersection: ";
+    for (int n : result) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+            <CodeBlock code={`
+run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Intersection: 3 4 5`} />
             </div>
             </div>
            
         </section>
         <section>
           <div>
-            <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+            <h3 class="text-xl font-bold text-white mb-4">std::set_difference-</h3>
             <div class="space-y-8"> 
-            <CodeBlock code={``} />
-            <CodeBlock code={``} />
+            <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+
+    std::vector<int> set1 = {1, 2, 3, 4, 5};
+    std::vector<int> set2 = {3, 4, 5, 6, 7};
+    std::vector<int> result(std::max(set1.size(), set2.size()));
+
+    // Find the difference
+    auto it = std::set_difference(set1.begin(), set1.end(), set2.begin(), set2.end(), result.begin());
+
+    // Resize the result vector to the actual size
+
+    result.resize(it - result.begin());
+
+    // Print the difference
+    std::cout << "Difference: ";
+    for (int n : result) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+            <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Difference: 1 2`} />
             </div>
             </div>
            
