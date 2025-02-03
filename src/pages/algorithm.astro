@@ -570,10 +570,25 @@ Output: Reversed: 5 4 3 2 1`} />
     </section>
     <section>
       <div>
-        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <h3 class="text-xl font-bold text-white mb-4">std::accumulate</h3>
         <div class="space-y-8"> 
-        <CodeBlock code={``} />
-        <CodeBlock code={``} />
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <numeric> // For std::accumulate
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 2, 3, 4, 5};
+
+    // Calculate the sum of all elements
+    int sum = std::accumulate(nums.begin(), nums.end(), 0);
+
+    std::cout << "Sum of elements: " << sum << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: Sum of elements: 15`} />
         </div>
         </div>
        
