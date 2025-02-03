@@ -2,23 +2,138 @@
 interface Props {
   code: string;
   lang?: string;
+  fileName?: string;
+  showLineNumbers?: boolean;
+  theme?: 'monokai' | 'github-dark' | 'dracula';
 }
 
-const { code, lang = 'cpp' } = Astro.props;
+const { 
+  code, 
+  lang = 'cpp',
+  fileName = 'untitled',
+  showLineNumbers = true,
+  theme = 'dracula',
+} = Astro.props;
+
+const lineCount = code.split('\n').length;
 ---
 
-<div class="relative">
-  <pre class="!bg-[#1f2937] !rounded-lg !p-4"><code class={`language-${lang}`}>{code}</code></pre>
-  <button
-    class="absolute top-2 right-2 text-gray-400 hover:text-white bg-gray-700 hover:bg-gray-600 rounded px-2 py-1 text-sm"
-    onclick="navigator.clipboard.writeText(this.parentElement.querySelector('code').textContent)"
-  >
-    Copy
-  </button>
+<div class="code-editor-container group">
+  <!-- Editor Header -->
+  <div class="flex items-center bg-[#1e1e1e] border-b border-[#333] px-4 py-2">
+    <div class="flex items-center space-x-2">
+      <div class="flex space-x-1.5">
+        <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+        <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+        <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+      </div>
+      <span class="text-gray-400 text-sm font-mono ml-3">{fileName}</span>
+    </div>
+  </div>
+
+  <!-- Editor Body -->
+  <div class="relative bg-[#1e1e1e] overflow-hidden">
+    <!-- Line Numbers -->
+    {showLineNumbers && (
+      <div class="absolute left-0 top-0 bottom-0 bg-[#1e1e1e] border-r border-[#333] px-4 py-4 text-[#4b5363] select-none">
+        {Array.from({ length: lineCount }).map((_, i) => (
+          <div class="text-xs leading-5">{i + 1}</div>
+        ))}
+      </div>
+    )}
+
+    <!-- Code Content -->
+    <div class="relative">
+      <pre class="!bg-[#1e1e1e] !p-4 !m-0 overflow-x-auto" style={showLineNumbers ? 'padding-left: 3.5rem' : ''}>
+        <code class={`language-${lang}`}>{code}</code>
+      </pre>
+
+      <!-- Copy Button -->
+      <button
+        class="copy-button absolute top-3 right-3 opacity-0 group-hover:opacity-100
+               bg-[#2d2d2d] hover:bg-[#3d3d3d] text-gray-400 hover:text-white
+               rounded px-3 py-1.5 text-sm font-medium transition-all duration-200
+               flex items-center gap-2 border border-[#404040]"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Editor Footer -->
+  <div class="flex items-center justify-between bg-[#007acc] px-4 py-1 text-white/80 text-xs">
+    <div class="flex items-center space-x-4">
+      <span>{lang.toUpperCase()}</span>
+      <span>UTF-8</span>
+    </div>
+    <div>
+      <span>Lines: {lineCount}</span>
+    </div>
+  </div>
 </div>
 
+<script>
+  function initializeCodeBlock() {
+    document.querySelectorAll('.copy-button').forEach(button => {
+      button.addEventListener('click', async () => {
+        const code = button.closest('.code-editor-container')?.querySelector('code')?.textContent || '';
+        await navigator.clipboard.writeText(code);
+        
+        const span = button.querySelector('span');
+        if (span) {
+          button.classList.add('bg-green-600/80', 'text-white');
+          span.textContent = 'Copied!';
+          
+          setTimeout(() => {
+            button.classList.remove('bg-green-600/80', 'text-white');
+            span.textContent = 'Copy';
+          }, 2000);
+        }
+      });
+    });
+  }
+
+  initializeCodeBlock();
+  document.addEventListener('astro:page-load', initializeCodeBlock);
+</script>
+
 <style>
+  .code-editor-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+
   pre {
-    margin: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #4a4a4a transparent;
+  }
+
+  pre::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  pre::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  pre::-webkit-scrollbar-thumb {
+    background-color: #4a4a4a;
+    border-radius: 4px;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  code:hover {
+    cursor: text;
   }
 </style>
