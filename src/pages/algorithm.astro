@@ -419,18 +419,57 @@ Output: After removing evens: 1 3 5
       <div>
         <h3 class="text-xl font-bold text-white mb-4">std::rotate</h3>
         <div class="space-y-8"> 
-        <CodeBlock code={``} />
-        <CodeBlock code={``} />
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {1, 2, 3, 4, 5};
+
+    // Rotate elements left
+    std::rotate(nums.begin(), nums.begin() + 2, nums.end());
+
+    // Print the result
+    std::cout << "After rotation: ";
+    for (int n : nums) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: After rotation: 3 4 5 1 2`} />
         </div>
         </div>
        
     </section>
     <section>
       <div>
-        <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+        <h3 class="text-xl font-bold text-white mb-4">std::nth_element</h3>
         <div class="space-y-8"> 
-        <CodeBlock code={``} />
-        <CodeBlock code={``} />
+        <CodeBlock code={`#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> nums = {3, 1, 4, 1, 5, 9, 2};
+
+    // Partially sort to place the 3rd smallest element in position
+     std::nth_element(nums.begin(), nums.begin() + 2, nums.end());
+
+    // Print the result
+    std::cout << "After nth_element (3rd smallest): ";
+    for (int n : nums) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}
+`} />
+        <CodeBlock code={`run command : g++ -std=c++11 algorithm.cpp -o algorithm
+Output: After nth_element (3rd smallest): 1 1 2 3 4 5 9`} />
         </div>
         </div>
        
