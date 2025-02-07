@@ -10,12 +10,10 @@ import CodeBlock from '../components/CodeBlock.astro';
         <h1 class="text-4xl font-bold text-white mb-8">Bitset</h1>
         
         <div class="space-y-12">
-              <div>
-                <h3 class="text-xl font-bold text-white mb-4"> Bitset - Comprehensive C++ Programming Guide </h3>
-                <section>
+
+          <section>
                     <div>
-                      <h1 class="text-4xl font-bold text-white mb-8">Start</h1>
-                      <div class="space-y-8"> 
+                      <h3 class="text-xl font-bold text-white mb-4">Bitset - Comprehensive C++ Programming Guide</h3>
                       <CodeBlock code={`/**
  ** ==================================================================================
  *? █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
@@ -60,9 +58,112 @@ import CodeBlock from '../components/CodeBlock.astro';
  ** ==================================================================================
  */`} />
                       </div>
+                     
+                </section>
+                 <section>
+                    <div>
+                      <h3 class="text-xl font-bold text-white mb-4">{"Mastering <bitset> in C++: A Complete Learning Guide"}</h3>
+                      <CodeBlock code={`/**
+**=======================================================================================
+*?|                     Mastering <bitset> in C++: A Complete Learning Guide             |
+**=======================================================================================
+
+*?Description:
+*!------------
+**The <bitset> header in C++ provides a powerful way to handle fixed-size binary data 
+**efficiently. Unlike vector<bool>, which is dynamically allocated, std::bitset<N> is 
+**memory-efficient, fast, and ideal for bitwise operations.
+
+*?Key Features:
+*!-------------------------------
+** - Fixed-size sequence of N bits
+** - Memory efficient implementation
+** - Fast bitwise operations
+** - Compile-time size determination
+** - Direct bit manipulation capabilities
+
+*?Common Use Cases:
+*!----------------
+**1. Flag management
+**2. Binary operations
+**3. State tracking
+**4. Memory-efficient boolean arrays
+**5. Bit manipulation tasks
+
+**=======================================================================================*/`} />
+                
+                    </div>
+                     
+                  </section>
+
+                  <section>
+                    <div>
+                      <h3 class="text-xl font-bold text-white mb-4"> {"Key <bitset> Features"}</h3>
+                      <CodeBlock code={`/**
+*?======================== Key <bitset> Features ===========================
+*?|  Feature      | Description                  | Example                  |
+**|---------------|------------------------------|--------------------------|
+**| .set()        | Sets all bits to 1           | b.set();                 |
+**| .reset()      | Sets all bits to 0           | b.reset();               |
+**| .flip()        | Toggles all bits             | b.flip();                 |
+**| .count()      | Returns number of 1s         | b.count();               |
+**| .any()        | Checks if any bit is 1       | b.any();                 |
+**| .none()       | Checks if all bits are 0     | b.none();                |
+**| .size()       | Returns total bit size       | b.size();                |
+**| .test(i)      | Checks if bit at index i     | b.test(3);               |
+**| .to_ulong()   | Converts to unsigned long    | b.to_ulong();            |
+**| .to_string()  | Converts to binary string    | b.to_string();           |
+**========================================================================*/`} />
                       </div>
                      
                   </section>
+
+                  <section>
+                    <div>
+                      <h3 class="text-xl font-bold text-white mb-4">{"Pro Tips for Learning <bitset> Faster"}</h3>
+                      <CodeBlock code={`/**
+*? ============================ Pro Tips for Learning <bitset> Faster ============================
+**|                                                                                             |
+*?| 1. Visualize Binary Representations                                                         |
+**|    - Use std::bitset<N>::to_string() for clear binary visualization                         |
+**|    - Practice reading and interpreting binary patterns                                      |
+**|    - Experiment with different sizes of bitsets                                             |
+**|                                                                                             |
+*?| 2. Write Small Experiments                                                                  |
+**|    - Practice with fundamental operations:                                                  |
+**|      * set() for setting bits to 1                                                          |
+**|      * reset() for clearing bits to 0                                                       |
+**|      * flip() for toggling bits                                                              |
+**|      * count() for counting set bits                                                        |
+**|                                                                                             |
+*?| 3. Solve Bitwise Problems                                                                   |
+**|    - Implement common bit manipulation algorithms:                                          |
+**|      * Parity checking                                                                      |
+**|      * Gray code generation                                                                 |
+**|      * Hamming code implementation                                                          |
+**|      * Subnet mask calculations                                                             |
+**|                                                                                             |
+*?| 4. Performance Comparison                                                                   |
+**|    - Compare with vector<bool>:                                                             |
+**|      * Memory efficiency                                                                     |
+**|      * Access speed                                                                         |
+**|      * Operation performance                                                                |
+**|                                                                                             |
+*?| 5. Real-World Applications                                                                  |
+**|    - Study practical uses in:                                                               |
+**|      * Cryptography algorithms                                                              |
+**|      * Data compression                                                                     |
+**|      * Network programming (IPv4/IPv6)                                                      |
+**|      * Error correction codes                                                               |
+**|      * Bloom filters implementation                                                          |
+**|                                                                                             |
+**=============================================================================================*/`} />
+                      </div>
+                     
+                  </section>
+
+                  
+                </section>
             </div>
           </div>
         </div>
