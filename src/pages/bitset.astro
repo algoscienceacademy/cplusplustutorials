@@ -239,20 +239,57 @@ After modifications: 10101011
                   </section>
                   <section>
                     <div>
-                      <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+                      <h3 class="text-xl font-bold text-white mb-4">Bitwise Operations</h3>
                       <div class="space-y-8"> 
-                      <CodeBlock code={``} />
-                      <CodeBlock code={``} />
+                      <CodeBlock code={`#include <bitset>
+#include <iostream>
+
+int main() {
+    std::bitset<4> b1("1100");
+    std::bitset<4> b2("1010");
+    std::cout << "b1 & b2: " << (b1 & b2) << "\n"; // AND
+    std::cout << "b1 | b2: " << (b1 | b2) << "\n"; // OR
+    std::cout << "b1 ^ b2: " << (b1 ^ b2) << "\n"; // XOR
+
+    return 0;
+}`} />
+                      <CodeBlock code={`/**
+*?============================ Program Output ============================
+Command: g++ -std=c++11 bitset.cpp -o bitset
+
+Results:
+b1 & b2: 1000
+b1 | b2: 1110
+b1 ^ b2: 0110
+*?=====================================================================*/`} />
                       </div>
                       </div>
                      
                   </section>
                   <section>
                     <div>
-                      <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+                      <h3 class="text-xl font-bold text-white mb-4">Counting Bits and Checking Specific Bits</h3>
                       <div class="space-y-8"> 
-                      <CodeBlock code={``} />
-                      <CodeBlock code={``} />
+                      <CodeBlock code={`#include <bitset>
+#include <iostream>
+
+int main() {
+    std::bitset<8> b("11010010");
+
+    std::cout << "Number of set bits: " << b.count() << "\n";    // Count 1s
+    std::cout << "Is bit 3 set? " << b.test(3) << "\n";         // Test bit 3
+
+    return 0;
+}`} />
+                      <CodeBlock code={`
+/**
+*?============================ Program Output ============================
+Command: g++ -std=c++11 bitset.cpp -o bitset
+
+Results:
+Number of set bits: 4
+Is bit 3 set? 0
+*?=====================================================================*/`} />
                       </div>
                       </div>
                      
