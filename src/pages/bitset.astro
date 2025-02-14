@@ -694,6 +694,109 @@ Contains 10 after removal: 0
                       </div>
                      
                   </section>
+                  <section>
+                    <div>
+                      <h1 class="text-4xl font-bold text-white mb-8">Let's Get Started with Some Bitset Projects</h1>
+                      <h3 class="text-xl font-bold text-white mb-4">Subnet Mask Validation</h3>
+                      <div class="space-y-8"> 
+                      <CodeBlock code={`#include <iostream>
+#include <bitset>
+#include <string>
+
+bool isValidSubnet(const std::string& binarySubnet) {
+    std::bitset<8> subnet(binarySubnet); 
+    bool foundZero = false;
+
+    for (int i = 7; i >= 0; --i) {
+        if (subnet.test(i)) {
+            if (foundZero) return false; // If 1 comes after a 0, invalid mask
+        } else {
+            foundZero = true; // Found a 0
+        }
+    }
+    return true;
+}
+
+int main() {
+    std::string subnet = "11100000"; // Example binary subnet mask
+    std::cout << "Subnet: " << subnet 
+              << (isValidSubnet(subnet) ? " is valid.\n" : " is invalid.\n");
+    return 0;
+}`} />
+                      <CodeBlock code={`/**
+*?============================ Program Output ============================
+Command: g++ -std=c++11 bitset.cpp -o bitset
+
+Results:
+Subnet: 11100000 is valid.
+*?=====================================================================*/`} />
+                      </div>
+                      </div>
+                     
+                  </section>
+                  <section>
+                    <div>
+                      <h3 class="text-xl font-bold text-white mb-4">Custom Binary Encryption</h3>
+                      <div class="space-y-8"> 
+                      <CodeBlock code={`#include <iostream>
+#include <bitset>
+#include <string>
+
+std::string encryptDecrypt(const std::string& input, const std::string& key) {
+    std::bitset<8> keyBits(key); 
+    std::string result = "";
+
+    for (char ch : input) {
+        std::bitset<8> charBits(ch);
+        charBits ^= keyBits; // XOR for encryption/decryption
+        result += static_cast<char>(charBits.to_ulong());
+    }
+    return result;
+}
+
+int main() {
+    std::string key = "10101010"; // 8-bit key
+    std::string plaintext = "Hello";
+    std::string encrypted = encryptDecrypt(plaintext, key);
+    std::cout << "Encrypted: " << encrypted << '\n';
+
+    std::string decrypted = encryptDecrypt(encrypted, key);
+    std::cout << "Decrypted: " << decrypted << '\n';
+
+    return 0;
+}`} />
+                      <CodeBlock code={`/**     
+*?============================ Program Output ============================
+Command: g++ -std=c++11 bitset.cpp -o bitset
+
+Results:
+Encrypted:"\x1D\x1D\x1D\x1D\x1D"
+Decrypted: Hello
+*?=====================================================================*/`} />
+                      </div>
+                      </div>
+                     
+                  </section>
+                  <section>
+                    <div>
+                      <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+                      <div class="space-y-8"> 
+                      <CodeBlock code={``} />
+                      <CodeBlock code={``} />
+                      </div>
+                      </div>
+                     
+                  </section>
+                  <section>
+                    <div>
+                      <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+                      <div class="space-y-8"> 
+                      <CodeBlock code={``} />
+                      <CodeBlock code={``} />
+                      </div>
+                      </div>
+                     
+                  </section>
                 
             </div>
           </div>
