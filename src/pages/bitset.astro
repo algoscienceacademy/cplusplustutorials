@@ -571,20 +571,67 @@ After right rotation by 2: 11101001
                   </section>
                   <section>
                     <div>
-                      <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+                      <h3 class="text-xl font-bold text-white mb-4">Finding the First Set and Unset Bit</h3>
                       <div class="space-y-8"> 
-                      <CodeBlock code={``} />
-                      <CodeBlock code={``} />
+                      <CodeBlock code={`#include <bitset>
+#include <iostream>
+
+int main() {
+    std::bitset<8> b("10101000");
+
+    // Find the first set bit
+    size_t firstSet = b.to_string().find('1');
+    std::cout << "First set bit at index: " << firstSet << "\n";
+
+    // Find the first unset bit
+    size_t firstUnset = b.to_string().find('0');
+    std::cout << "First unset bit at index: " << firstUnset << "\n";
+
+    return 0;
+}`} />
+                      <CodeBlock code={`/**
+*?============================ Program Output ============================
+Command: g++ -std=c++11 bitset.cpp -o bitset
+
+Results:
+First set bit at index: 0
+First unset bit at index: 1
+*?=====================================================================*/`} />
                       </div>
                       </div>
                      
                   </section>
                   <section>
                     <div>
-                      <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+                      <h3 class="text-xl font-bold text-white mb-4">Bitwise Operations on Multiple</h3>
                       <div class="space-y-8"> 
-                      <CodeBlock code={``} />
-                      <CodeBlock code={``} />
+                      <CodeBlock code={`#include <bitset>
+#include <iostream>
+
+int main() {
+    std::bitset<8> b1("11001100");
+    std::bitset<8> b2("10101010");
+
+    std::cout << "b1 AND b2: " << (b1 & b2) << "\n";
+    std::cout << "b1 OR b2: " << (b1 | b2) << "\n";
+    std::cout << "b1 XOR b2: " << (b1 ^ b2) << "\n";
+
+    // Compound assignment
+    b1 &= b2;
+    std::cout << "b1 after AND with b2: " << b1 << "\n";
+
+    return 0;
+}`} />
+                      <CodeBlock code={`/**
+*?============================ Program Output ============================
+Command: g++ -std=c++11 bitset.cpp -o bitset
+
+Results:
+b1 AND b2: 10001000
+b1 OR b2: 11101110
+b1 XOR b2: 01100110
+b1 after AND with b2: 10001000
+*?=====================================================================*/`} />
                       </div>
                       </div>
                      
