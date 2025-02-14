@@ -329,10 +329,30 @@ Binary to string: 10110110
                   </section>
                   <section>
                     <div>
-                      <h3 class="text-xl font-bold text-white mb-4">std::max_element and std::min_element</h3>
+                      <h3 class="text-xl font-bold text-white mb-4">Comparing Two std::bitset Instances</h3>
                       <div class="space-y-8"> 
-                      <CodeBlock code={``} />
-                      <CodeBlock code={``} />
+                      <CodeBlock code={`#include <bitset>
+#include <iostream>
+
+int main() {
+    std::bitset<8> b1("11001100");
+    std::bitset<8> b2("11001100");
+    std::bitset<8> b3("10101010");
+
+    std::cout << "b1 == b2: " << (b1 == b2) << "\n"; // Equal
+    std::cout << "b1 != b3: " << (b1 != b3) << "\n"; // Not equal
+
+    return 0;
+}
+`} />
+                      <CodeBlock code={`/**
+*?============================ Program Output ============================
+Command: g++ -std=c++11 bitset.cpp -o bitset
+
+Results:
+b1 == b2: 1
+b1 != b3: 1
+*?=====================================================================*/`} />
                       </div>
                       </div>
                      
